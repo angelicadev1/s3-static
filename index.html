@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angelica Delmendo | Portfolio</title>
+    <style>
+        /* --- Global Reset & Variables --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        :root {
+            --primary-color: #1e3a8a;   /* Navy Blue */
+            --accent-color: #0284c7;    /* Light Accent Blue */
+            --dark-color: #1f2937;      /* Charcoal */
+            --light-color: #f8fafc;     /* Soft White/Gray */
+            --text-color: #334155;      /* Slate Gray */
+            --border-color: #e2e8f0;    /* Light Border Gray */
+        }
+        body {
+            color: var(--text-color);
+            background-color: var(--light-color);
+            line-height: 1.6;
+        }
+
+        /* --- Navigation Bar --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            color: var(--primary-color);
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        nav ul li {
+            margin-left: 2rem;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--primary-color);
+        }
+
+        /* --- Page & Section Structure --- */
+        .page {
+            display: none; 
+            padding: 7rem 2rem 4rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+        .page.active-page {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        /* ================= PAGE 1: HOME & RESUME ================= */
+        .profile-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        .profile-text h1 {
+            font-size: 3rem;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+        .profile-text .subtitle {
+            font-size: 1.25rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Button Actions Container */
+        .profile-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #ffffff;
+            padding: 0.75rem 1.7rem;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #1e40af;
+        }
+        /* Outline button modifier for the PDF link */
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: #ffffff;
+        }
+
+        /* Resume Segment Layout */
+        .resume-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+        .resume-block {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .resume-item {
+            margin-bottom: 1.5rem;
+        }
+        .resume-item:last-child {
+            margin-bottom: 0;
+        }
+        .resume-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.3rem;
+        }
+        .resume-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        .resume-meta {
+            font-size: 0.95rem;
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+        .resume-date {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+        .resume-item ul {
+            margin-left: 1.25rem;
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* Tags for skills */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .skill-tag {
+            background: var(--light-color);
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* ================= PAGE 2: GRADUATION & PROJECTS ================= */
+        .grad-showcase {
+            display: flex;
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            margin-bottom: 4rem;
+        }
+        .grad-image-wrapper {
+            flex: 1;
+            background: #cbd5e1;
+            min-height: 600px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .grad-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+        }
+        .image-placeholder-text {
+            color: #475569;
+            font-weight: 600;
+            text-align: center;
+            padding: 2rem;
+            z-index: 1;
+        }
+        .grad-details {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .grad-details h2 {
+            font-size: 2.2rem;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+        .grad-degree {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        .grad-quote {
+            font-style: italic;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+            margin-top: 1.5rem;
+            color: #475569;
+        }
+
+        /* Projects Layout */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .project-card {
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+        .project-card:hover {
+            transform: translateY(-4px);
+        }
+        .project-content {
+            padding: 1.5rem;
+        }
+        .project-content h3 {
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+        .project-content p {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #ffffff;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        /* --- Responsive Viewport Changes --- */
+        @media (max-width: 768px) {
+            .profile-container, .grad-showcase {
+                flex-direction: column;
+            }
+            .grad-image-wrapper {
+                min-height: 300px;
+            }
+            .grad-details {
+                padding: 2rem;
+            }
+            .profile-text h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Shared Header -->
+    <header>
+        <div class="nav-container">
+            <a onclick="switchPage('home')" class="logo">Angelica<span>Portfolio</span></a>
+            <nav>
+                <ul>
+                    <li><a id="nav-home" onclick="switchPage('home')" class="active">Resume & Profile</a></li>
+                    <li><a id="nav-grad" onclick="switchPage('grad')">Graduation & Projects</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ================= PAGE 1: HOME & RESUME ================= -->
+    <main id="page-home" class="page active-page">
+        <!-- Profile Banner -->
+        <div class="profile-container">
+            <div class="profile-text">
+                <h1>Angelica Delmendo</h1>
+                <div class="subtitle">TechStart Engineer</div>
+                <p>TechStart Engineer at EastWest Bank Corporation, participating in a rotational program for fresh graduates that provides exposure to various technology roles, projects, and business functions while developing technical and professional skills.</p>
+                
+                <!-- Action Buttons Grid Area -->
+                <div class="profile-buttons">
+                    <!-- CHANGE 'resume.pdf' to your actual file path/URL -->
+                    <a href="resume.pdf" target="_blank" class="btn btn-outline">📄 Download Resume PDF</a>
+                    <button onclick="switchPage('grad')" class="btn">View Graduation Details &rarr;</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resume Section -->
+        <h2 class="section-title">Professional Resume</h2>
+        <div class="resume-grid">
+            
+            <!-- Education Block -->
+            <div class="resume-block">
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Education</h3>
+                <div class="resume-item">
+                    <div class="resume-header">
+                        <span class="resume-title">Polytechnic University of the Philippines</span>
+                        <span class="resume-date">Class of 2025</span>
+                    </div>
+                    <div class="resume-meta">B.S. in Computer Engineering</div>
+                    <p style="margin-top: 0.5rem;">Specialization in network infrastructure design, secure network deployments, and connectivity solutions, supported by a strong foundation in Computer Engineering principles and system integration.</p>
+                </div>
+            </div>
+
+            <!-- Experience Block -->
+            <div class="resume-block">
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Technical Work Experience</h3>
+                
+                <!-- Job 1 -->
+                <div class="resume-item">
+                    <div class="resume-header">
+                        <span class="resume-title">Software Engineer Intern</span>
+                        <span class="resume-date">Aug - Sept 2023</span>
+                    </div>
+                    <div class="resume-meta">Dewise Company</div>
+                    <ul>
+                        <li>Learned and applied C# programming in software development projects.</li>
+                        <li>Gained hands-on experience with Microsoft Azure Fundamentals.</li>
+                        <li>Assisted in designing, developing, testing APIs, and maintaining software systems.</li>    
+                    </ul>
+                </div>
+                    
+                <!-- Job 2 -->
+                <div class="resume-item">
+                    <div class="resume-header">
+                        <span class="resume-title">Moderator and Admission Officer</span>
+                        <span class="resume-date">2024</span>
+                    </div>
+                    <div class="resume-meta">Ovaldesk Inc.</div>
+                    <ul>
+                        <li>Served as online moderator using OBS for organizational events and admissions.</li> 
+                    </ul>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="resume-item">
+                    <div class="resume-header">
+                        <span class="resume-title">Technical Support</span>
+                        <span class="resume-date">Aug 2024 - Jan 2025</span>
+                    </div>
+                    <div class="resume-meta">PC Gilmore IT Corporation.</div>
+                    <ul>
+                        <li>Troubleshot laptop integrated circuits and software issues.</li> 
+                        <li>Assisted clients in finding solutions for computer/laptop problems.</li>
+                        <li>Edited publication materials and managed social media pages.</li>
+                        <li>Tracked cheque payments and provided administrative support.</li>      
+                    </ul>
+                </div>
+            </div>
+            
+
+            <!-- Skills Block -->
+            <div class="resume-block">
+                <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">Skills & Competencies</h3>
+                <p>Key technical proficiencies engineered over extensive project delivery lifecycles:</p>
+                <div class="skills-container">
+                    <div class="skill-tag">Web Development</div>
+                    <div class="skill-tag">Programming</div>
+                    <div class="skill-tag">Embedded Systems & IoT</div>
+                    <div class="skill-tag">Operating Systems</div>
+                    <div class="skill-tag">Deployment & Tools</div>
+                    <div class="skill-tag">Hardware/Software Troubleshooting</div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ================= PAGE 2: GRADUATION & PROJECTS ================= -->
+    <main id="page-grad" class="page">
+        <!-- Graduation Showcase Card -->
+        <div class="grad-showcase">
+            <div class="grad-image-wrapper">
+                <!-- Replace 'src' below with your actual photo path, e.g., src="grad-photo.jpg" -->
+                <img src="C:\Users\ACD83755\Documents\PORTFOLIO\gradpic.jpg">
+
+            </div>
+            <div class="grad-details">
+                <span>Class of 2025</span>
+                <h2>PUP Graduate</h2>
+                <div class="grad-degree">B.S. Computer Engineering — Major in Network</div>
+                <p>Successfully completed the Bachelor of Science in Computer Engineering program at the Polytechnic University of the Philippines, developing a strong foundation in computer systems, network architecture, data communications, and infrastructure technologies through rigorous academic and technical training.</p>
+                <p class="grad-quote">"Do better if you know better. Once you know better, do better."</p>
+            </div>
+        </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Angelica Delmendo Portfolio</p>
+    </footer>
+
+    <!-- Core Page Switching JavaScript -->
+    <script>
+        function switchPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active-page');
+            });
+            // Deactivate all navigation links
+            document.querySelectorAll('nav ul li a').forEach(navLink => {
+                navLink.classList.remove('active');
+            });
+
+            // Activate chosen target items
+            if (pageId === 'home') {
+                document.getElementById('page-home').classList.add('active-page');
+                document.getElementById('nav-home').classList.add('active');
+            } else if (pageId === 'grad') {
+                document.getElementById('page-grad').classList.add('active-page');
+                document.getElementById('nav-grad').classList.add('active');
+            }
+            
+            // Instantly scroll window view back to top
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
+</body>
+</html>
